@@ -18,5 +18,8 @@ if [ -n "$OWSERVER" ]; then
     sed -i -r -e "s|#\[\[OWSERVER\]\]|http: server=${OWSERVER}:4304|" ${CONFIG_FILE}
 fi
 
+echo "${CONFIG_FILE}"
+cat ${CONFIG_FILE}
+
 echo "=> Starting owhttpd ..."
 exec owhttpd -c $CONFIG_FILE --foreground --error_level=3
