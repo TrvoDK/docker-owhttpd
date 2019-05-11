@@ -11,12 +11,12 @@ fi
 
 cp -f $CONFIG_TEMPLATE $CONFIG_FILE
 
-# use FAKE devices
+# use OWSERVER devices
 if [ -n "$OWSERVER" ]; then
-    echo "Using OWSERVER address: ${OWSERVER}"
-    # ! server: server=${OWSERVER}:4304
-    sed -i -r -e "s|#\[\[OWSERVER\]\]|! server: server=${OWSERVER}:4304|" ${CONFIG_FILE}
+    echo "HTTPD: Using OWSERVER address: ${OWSERVER}"
+    # http: server=${OWSERVER}:4304
+    sed -i -r -e "s|#\[\[OWSERVER\]\]|http: server=${OWSERVER}:4304|" ${CONFIG_FILE}
 fi
 
 echo "=> Starting owhttpd ..."
-exec owhttpd -c $CONFIG_FILE --foreground --error_level=1
+exec owhttpd -c $CONFIG_FILE --foreground --error_level=3
